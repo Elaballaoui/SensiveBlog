@@ -19,6 +19,7 @@
               <input class="form-control border" name="password" id="name" type="password" placeholder="Enter your password">
             </div>
             <div class="form-group text-center text-md-right mt-3">
+              <a href="{{ route('register') }}" class="mx-3">Register instead ?</a>
               <button type="submit" class="button button--active button-contactForm">Login</button>
             </div>
           </form>
