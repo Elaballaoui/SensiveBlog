@@ -37,6 +37,7 @@ Route::post('/subscriber/store', [SubscriberController::class,'store'])->name('s
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 
 // Blog Routes
+Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
 Route::resource('blogs',BlogController::class);
 
 // Authentication Routes
