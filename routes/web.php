@@ -19,7 +19,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Theme Routes
+// Authentication Routes //
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+require __DIR__.'/auth.php';
+
+// Theme Routes //
 Route::controller(ThemeController::class)->name('theme.')->group(function(){
     Route::get('/','index')->name('index');
     // Route::get('/category','category')->name('category'); // we add id in route
@@ -31,29 +44,15 @@ Route::controller(ThemeController::class)->name('theme.')->group(function(){
     // Route::get('/login','login')->name('login');
 });
 
-// Subscriber Routes
+// Subscriber Routes //
 Route::post('/subscriber/store', [SubscriberController::class,'store'])->name('subscriber.store');
 
-// Contacts Routes
+// Contacts Routes //
 Route::post('/contact/store',[ContactController::class,'store'])->name('contact.store');
 
-// Blog Routes
+// Blog Routes //
 Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
-Route::resource('blogs',BlogController::class);
+Route::resource('blogs',BlogController::class)->except('index');
 
-// Comments Routes
+// Comments Routes //
 Route::post('/comments/store',[CommentController::class,'store'])->name('comments.store');
-
-// Authentication Routes
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-

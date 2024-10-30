@@ -78,8 +78,8 @@
                         </div>										
                     </div>
                     <div class="form-group">
-                            <input type="text" class="form-control" name="subject" value="{{ old('subject') }}" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
-                            <x-input-error :messages="$errors->get('subject')" class="mt-2" />
+                        <input type="text" class="form-control" name="subject" value="{{ old('subject') }}" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+                        <x-input-error :messages="$errors->get('subject')" class="mt-2" />
                     </div>
                     <div class="form-group">
                         <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required="">value="{{ old('message') }}"</textarea>

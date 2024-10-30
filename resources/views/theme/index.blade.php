@@ -13,79 +13,35 @@
           <div class="hero-banner__content">
             <h3>Tours & Travels</h3>
             <h1>Amazing Places on earth</h1>
-            <h4>December 12, 2018</h4>
+            <h4>{{ now()->format('F d, Y') }}</h4>
           </div>
         </div>
       </div>
     </section>
     <!--================Hero Banner end =================-->  
-    <!--================ Blog slider start =================-->  
-    <section>
-      <div class="container">
-        <div class="owl-carousel owl-theme blog-slider">
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide1.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
-          </div>
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide2.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
-          </div>
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide3.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
-          </div>
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide1.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
-          </div>
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide2.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
-          </div>
-          <div class="card blog__slide text-center">
-            <div class="blog__slide__img">
-              <img class="card-img rounded-0" src="{{asset('assets')}}/img/blog/blog-slider/blog-slide3.png" alt="">
-            </div>
-            <div class="blog__slide__content">
-              <a class="blog__slide__label" href="#">Fashion</a>
-              <h3><a href="#">New york fashion week's continued the evolution</a></h3>
-              <p>2 days ago</p>
-            </div>
+    <!--================ Blog slider start =================-->
+    @if (count($sliderBlogs)>0)
+      <section>
+        <div class="container">
+          <div class="owl-carousel owl-theme blog-slider">
+
+            @foreach ($sliderBlogs as $blog)
+              <div class="card blog__slide text-center">
+                <div class="blog__slide__img">
+                  <img class="card-img rounded-0" src="{{asset("storage/blogs/$blog->image")}}" alt="">
+                </div>
+                <div class="blog__slide__content">
+                  <a class="blog__slide__label" href="{{ route('theme.category',['id'=>$blog->category->id]) }}">{{ $blog->category->name }}</a>
+                  <h3><a href="{{ route('blogs.show',['blog'=>$blog]) }}">{{ $blog->name }}</a></h3>
+                  <p>{{ $blog->created_at->format('d M Y') }}</p>
+                </div>
+              </div>
+            @endforeach
+
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    @endif  
     <!--================ Blog slider end =================-->  
 
     <!--================ Start Blog Post Area =================-->
