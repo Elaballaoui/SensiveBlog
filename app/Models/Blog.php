@@ -13,10 +13,14 @@ class Blog extends Model
 
     // category has many blogs, that way here category is singlar and there blogs is plural 
     public function category(){
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
@@ -39,6 +40,9 @@ Route::post('/contact/store',[ContactController::class,'store'])->name('contact.
 // Blog Routes
 Route::get('/my-blogs',[BlogController::class,'myBlogs'])->name('blogs.my-blogs');
 Route::resource('blogs',BlogController::class);
+
+// Comments Routes
+Route::post('/comments/store',[CommentController::class,'store'])->name('comments.store');
 
 // Authentication Routes
 Route::get('/dashboard', function () {
